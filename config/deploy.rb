@@ -11,7 +11,7 @@ require "bundler/capistrano"
 
 # General
 
-set :application, "chirper"
+set :application, "notes"
 set :user, "kevin"
 
 set :deploy_to, "/home/#{user}/#{application}"
