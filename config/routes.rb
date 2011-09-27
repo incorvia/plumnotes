@@ -1,8 +1,9 @@
 Notes::Application.routes.draw do
-  get "pages/home"
-  get "pages/signup"
+
+  resources :users
+  match "/signup", :to => "Users#new"
   
-  match "/signup", :to => "Pages#signup"
+  get "pages/home"
   root :to => "Pages#home"
   
 end

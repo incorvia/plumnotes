@@ -3,8 +3,4 @@ class PagesController < ApplicationController
     @title = 'Home'
   end
 
-  def signup
-    @title = 'Sign Up'
-  end
-
 end
