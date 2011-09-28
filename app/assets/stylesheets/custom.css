@@ -22,5 +22,12 @@
 
 input.field {
 	margin: 5px 0px;
+	height: 24px;
+	font-size: 14px;
+}
+
+input.btn {
+	width: 120px;
+	margin-top: 15px;
 }
 

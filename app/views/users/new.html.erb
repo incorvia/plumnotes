@@ -1,14 +1,17 @@
 <div class="container">
 
   <!-- Main hero unit for a primary marketing message or call to action -->
-  <div class="hero-unit span6 offset3">
+  <div class="hero-unit span6 offset3"> 
+    <%= render 'shared/error_messages'%>
     <h2>Sign Up</h2>
     <p>Please enter some login details you can easily remember:</p>
-    <form action="">
-	  <input class="xlarge span6 field" type="text" placeholder="Email">
-      <input class="xlarge span6 field" type="password" placeholder="Password">
-	  <input class="xlarge span6 field" type="password" placeholder="Confirm Password">
-	</form>
-	<p><a class="btn primary large pull-right">I'm Ready!</a></p>
+    <%= form_for @user do |f| %>
+	  <%= f.text_field :email, :class => "xlarge span6 field", :placeholder => "Email" %>
+      <%= f.password_field :password, :class => "xlarge span6 field", :placeholder => "Password"%>
+	  <%= f.password_field :password_confirmation, 
+	      				   :class => "xlarge span6 field", 
+						   :placeholder => "Password Confirmation"%>
+	  <%= f.submit "I'm Ready", :class => "btn primary large pull-right"%>
+	<% end %>
   </div>
 </div>

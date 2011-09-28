@@ -1,12 +1,5 @@
-<div class="topbar">
-  <div class="fill">
-    <div class="container">
-      <%= link_to "Notes", root_path, :class => "brand" %>
-      <form action="" class="pull-right">
-        <input class="input-small" type="text" placeholder="Username">
-        <input class="input-small" type="password" placeholder="Password">
-        <button class="btn" type="submit">Sign in</button>
-      </form>
-    </div>
-  </div>
-</div>
+<% if @status %>
+	<%= render 'layouts/signedin' %>
+<% else %>
+	<%= render 'layouts/signedout'%>
+<% end %>
