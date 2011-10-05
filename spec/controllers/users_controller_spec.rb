@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
   render_views
 
-  describe "User pages" do                          # ----- User Pages ------   
+  describe "Get 'show' user page" do                          # ----- User Pages ------   
   
     before(:each) do
       @user = Factory(:user)
@@ -20,7 +20,7 @@ describe UsersController do
     end
   end
   
-  describe "User new (signup) page" do              # ----- Signup Pages ------   
+  describe "GET 'new' user page" do              # ----- Signup Pages ------   
   
     it "should return new page successfully" do
       get 'new'
@@ -76,3 +76,4 @@ describe UsersController do
     end  
   end
 end
+

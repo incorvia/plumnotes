@@ -2,12 +2,11 @@ class UsersController < ApplicationController
   def new
     @title = 'Sign Up'
     @user = User.new
-    @status = false
   end
 
   def show
     @user = User.find(params[:id])
-    @status = true
+    @title = "My Notes"
   end
   
   def create

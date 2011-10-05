@@ -1,0 +1,14 @@
+<div class="container">
+
+  <!-- Main hero unit for a primary marketing message or call to action -->
+  <div class="hero-unit span6 offset3">
+    <%= render 'shared/flash_messages' %>
+    <h2>Sign In</h2>
+    <p>Please enter the login details you entered wheny you signed up:</p>
+    <%= form_for(:session, :url => sessions_path) do |f| %>
+	  <%= f.text_field :email, :class => "xlarge span6 field", :placeholder => "Email" %>
+      <%= f.password_field :password, :class => "xlarge span6 field", :placeholder => "Password"%>
+	  <%= f.submit "Submit", :class => "btn primary large pull-right"%>
+	<% end %>
+  </div>
+</div>

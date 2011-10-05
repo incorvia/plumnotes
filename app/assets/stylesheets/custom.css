@@ -31,3 +31,11 @@ input.btn {
 	margin-top: 15px;
 }
 
+#signout {
+	margin: 10px 0px 10px 11px;
+}
+
+#signout a {
+	color: #fff;
+}
+

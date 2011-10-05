@@ -2,12 +2,15 @@
 <div class="topbar">
    <div class="fill">
      <div class="container">
-       <a class="brand" href="#">Notes</a>
+       <a class="brand" href="<%= root_url %>">Notes</a>
        <ul class="nav">
 		<li class="active">	
-			<a href=#">User Name</a>
+			<a href="#"><%= current_user.email %></a>
 		</li>
        </ul>
+       <div class="pull-right" id="signout">
+       <%= link_to "Sign Out", signout_path, :method => :delete %>
+       </div>
      </div>
    </div>
 </div>

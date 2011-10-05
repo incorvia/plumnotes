@@ -1,4 +1,4 @@
-<% if @status %>
+<% if signed_in? %>
 	<%= render 'layouts/signedin' %>
 <% else %>
 	<%= render 'layouts/signedout'%>

@@ -1,9 +1,13 @@
 Notes::Application.routes.draw do
 
   resources :users
-  match "/signup", :to => "Users#new"
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match "/signup", :to => "users#new"
+  match "/signin", :to => "sessions#new"
+  match '/signout', :to => "sessions#destroy"
   
   get "pages/home"
-  root :to => "Pages#home"
+  root :to => "pages#home"
   
 end

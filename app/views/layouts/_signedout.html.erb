@@ -2,11 +2,14 @@
   <div class="fill">
     <div class="container">
       <%= link_to "Notes", root_path, :class => "brand" %>
-      <form action="" class="pull-right">
-        <input class="input-small" type="text" placeholder="Username">
-        <input class="input-small" type="password" placeholder="Password">
-        <button class="btn" type="submit">Sign in</button>
-      </form>
+      <div class="pull-right">
+        <%= form_for(:session, :url => sessions_path) do |f| %>
+        <%= f.text_field :email, :id => "email_login", :class => "input-medium", 
+                         :placeholder => "Email" %>
+        <%= f.password_field :password, :id => "pass_login", :class => "input-medium", :placeholder => "Password" %>
+        <%= button_tag "Sign In", :class => "btn" %>
+        <% end %>
+        </div>
     </div>
   </div>
 </div>
