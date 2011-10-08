@@ -3,6 +3,6 @@
     <p>&copy; <a href="http://www.kevinincorvia.com">Kevin Incorvia 2011</a></p>
     <br />
   </footer>
-<%= debug @note %>
+<%= debug @note if Rails.env.development? %>
 
 </div> 
