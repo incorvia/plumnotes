@@ -7,6 +7,7 @@ describe UsersController do
   
     before(:each) do
       @user = Factory(:user)
+      test_sign_in(@user)
     end
     
     it "should return user page" do
@@ -68,12 +69,32 @@ describe UsersController do
           post :create, :user => @attr
         end.should change(User, :count).by(1)
       end
+
+      it "should sign in the new user" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
       
       it "should redirect to the right user" do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
       end
     end  
+  end
+
+  describe "Authentication" do              # ----- Authentication ------   
+
+    before(:each) do
+      @user = Factory(:user)
+    end
+
+    describe "for not-signed-in users" do
+
+      it "should redirect a user to the homepage" do
+        get :show, :id => @user
+        response.should redirect_to(root_path)
+      end
+    end
   end
 end
 

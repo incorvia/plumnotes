@@ -18,6 +18,10 @@ module SessionsHelper
 		@current_user = nil
 	end
 
+	def deny_access
+		redirect_to(root_path)
+	end
+
 private
 
 	def user_from_remember_token
