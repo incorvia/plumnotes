@@ -14,5 +14,18 @@ describe PagesController do
       get 'home'
       response.should have_selector("title", :content => "Notes | Home")
     end
+
+    describe "when signed in" do
+      
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end      
+
+      it "should redirect to the users page" do
+        get 'home'
+        response.should redirect_to(user_path(@user))
+      end
+    end
   end
 end

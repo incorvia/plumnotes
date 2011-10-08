@@ -39,3 +39,24 @@ input.btn {
 	color: #fff;
 }
 
+#input {
+	margin-left: 185px;
+}
+
+#notecard p {
+	font-size: 15px;
+}
+
+#note_container {
+	border-left: 0px #eee solid;
+	border-bottom: 1px #eee solid;
+}
+
+table#notecard {
+	margin-top: 10px;
+}
+
+table#notecard {
+	border: 1px solid #fff;
+}
+

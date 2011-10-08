@@ -1,0 +1,23 @@
+<%= javascript_tag do %>
+
+$(document).ready(function() {
+    $('textarea').shiftenter();
+    $('textarea').autoResize();
+});
+
+<% end %>
+
+
+
+<div class="page-header">
+   <div class="input">
+      <%= form_for @note do |f| %>
+      	<%= f.text_area :content, :id => "input", :class => "textarea span8", :size => "3", 
+      									:placeholder => "Note...", :onKeyPress => "return" %>
+      <% end %>
+   </div>
+</div>
+
+
+
+

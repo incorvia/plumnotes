@@ -114,7 +114,30 @@ describe User do
       end
       
     end
-    
-    
+  end
+
+  describe "notecard associations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      @note1 = Factory(:notecard, :user => @user, :created_at => 1.day.ago)
+      @note2 = Factory(:notecard, :user => @user, :created_at => 1.hour.ago)
+
+    end
+
+    it "should respond to notecard attribute" do
+      @user.should respond_to(:notecards)
+    end
+
+    it "should have the correct post order" do
+      @user.notecards.should == [@note2, @note1]
+    end
+
+    it "should delete dependents" do
+      @user.destroy
+      [@note1, @note2].each do |note|
+        Notecard.find_by_id(note.id).should be_nil
+      end
+    end
   end
 end

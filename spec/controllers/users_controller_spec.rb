@@ -15,9 +15,17 @@ describe UsersController do
       response.should be_success
     end
     
-    it "should " do
+    it "should show correct user " do
       get :show, :id => @user
       assigns(:user).should == @user
+    end
+
+    it "should show the users notes" do
+      note1 = Factory(:notecard, :content => "foobar", :user => @user)
+      note2 = Factory(:notecard, :content => "foobaz", :user => @user)
+      get :show, :id => @user
+      response.should have_selector("table#notecard", :content => "foobar")
+      response.should have_selector("table#notecard", :content => "foobaz")
     end
   end
   
@@ -86,6 +94,7 @@ describe UsersController do
 
     before(:each) do
       @user = Factory(:user)
+      @user2 = Factory(:user, :email => "second@user.com")
     end
 
     describe "for not-signed-in users" do
@@ -93,6 +102,15 @@ describe UsersController do
       it "should redirect a user to the homepage" do
         get :show, :id => @user
         response.should redirect_to(root_path)
+      end
+    end
+
+    describe "for signed-in users" do
+
+      it "should not allow access to other users pages" do
+        test_sign_in(@user)
+        get 'show', :id => @user2
+        response.should redirect_to(user_path(@user))
       end
     end
   end

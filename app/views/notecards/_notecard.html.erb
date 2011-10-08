@@ -1,0 +1,8 @@
+<table id="notecard">
+  <tr>
+    <td id="note_container">
+    	<%= simple_format(notecard.content) %>
+			<i><%= time_ago_in_words(notecard.created_at) %> ago</i>
+		</td>
+	</tr>
+</table>

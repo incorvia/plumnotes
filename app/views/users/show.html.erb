@@ -1,18 +1,15 @@
-
-
 <div id="user_show" class="container">
   <div class="content">
-  <div class="page-header">
-    <div class="input">
-      <textarea class="textarea span8" type="text" placeholder="Note..."></textarea>
-    </div>
-  </div>
-  <div class="row"> 
-    <div class="span4">
-      <h3>Tags</h3>
-    </div>
-    <div class="span10">
-      <h3>Notes</h3>
+    <%= render 'input_panel' %>
+    <div class="row"> 
+      <div class="span4">
+        <h3>Tags</h3>
+      </div>
+      <div class="span10">
+        <h3>Notes</h3>
+        <%= render @notecards %>
+        <%= paginate @notecards %>
+      </div>
     </div>
   </div>
 </div>

@@ -2034,8 +2034,16 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   color: #bfbfbf;
 }
 .pagination .next a {
-  border: 0;
+  border-right: 1px solid;
+  border-right-color: #ddd;
 }
+
+.pagination .last a {
+  border-right: 0px solid;
+  border-right-color: #ddd;
+}
+
+
 .well {
   background-color: #f5f5f5;
   margin-bottom: 20px;

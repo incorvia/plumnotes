@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   
   attr_accessor :password
-  
+
+  has_many :notecards,    :dependent => :destroy
+
   email_regex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i
   
   validates :email,     :presence => true,

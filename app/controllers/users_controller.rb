@@ -10,6 +10,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = "My Notes"
+
+    if @user == @current_user
+      @note = Notecard.new if signed_in?
+      @notecards = @user.notecards.page params[:page]
+    else
+      redirect_to user_path(@current_user)
+    end
   end
   
   def create
@@ -27,5 +34,6 @@ private
 
   def authenticate
     deny_access unless signed_in?
-  end
+  end 
+
 end
