@@ -28,10 +28,10 @@ class NotecardsController < ApplicationController
 
   def assign_tags(tag_list, note)
     tag_list.each do |tag|
-      if @note.tags.find_by_tag_name(tag).nil?
+      if current_user.tags.find_by_tag_name(tag).nil?
         @note.tags.create(:tag_name => tag)
       else
-        tag_id = @note.tags.find_by_tag_name(tag).id
+        tag_id = current_user.tags.find_by_tag_name(tag).id
         @note.associations.create(:tag_id => tag_id)
       end
     end
