@@ -11,7 +11,8 @@ FactoryGirl.define do
   end
 
   factory :notecard do |notecard|
-  	content 							'foobar'
+  	content 							'This is a note. @tag1 More note. @tag2 inc@gmail.com. '
  		notecard.association 	:user
  	end
+
  end

@@ -3,6 +3,7 @@
     <p>&copy; <a href="http://www.kevinincorvia.com">Kevin Incorvia 2011</a></p>
     <br />
   </footer>
-<%= debug @note if Rails.env.development? %>
+<%= debug @current_user.tags.find_by_tag_name("@hello").nil? if Rails.env.development? %>
+<%= debug @current_user.tags if Rails.env.development? %>
 
 </div> 

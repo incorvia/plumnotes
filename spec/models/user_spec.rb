@@ -122,7 +122,6 @@ describe User do
       @user = User.create(@attr)
       @note1 = Factory(:notecard, :user => @user, :created_at => 1.day.ago)
       @note2 = Factory(:notecard, :user => @user, :created_at => 1.hour.ago)
-
     end
 
     it "should respond to notecard attribute" do
@@ -139,5 +138,28 @@ describe User do
         Notecard.find_by_id(note.id).should be_nil
       end
     end
+  end
+
+  describe "User tag assocations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      @note1 = Factory(:notecard, :user => @user, :content => "Lorem Ipsum")
+      @tag = @note1.tags.create(:tag_name => "foobar")
+      @tag2 = Tag.create(:tag_name => "bazbar")
+    end
+
+    it "should respond to tags" do
+      @user.should respond_to(:tags)
+    end
+
+    it "should include associated tags" do
+      @user.tags.should include(@tag)
+    end
+
+    it "should not include non-associated tags" do
+      @user.tags.should_not include(@tag2)
+    end
+
   end
 end

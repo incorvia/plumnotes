@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111008013225) do
+ActiveRecord::Schema.define(:version => 20111008220402) do
+
+  create_table "associations", :force => true do |t|
+    t.integer  "notecard_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "associations", ["notecard_id"], :name => "index_associations_on_notecard_id"
+  add_index "associations", ["tag_id"], :name => "index_associations_on_tag_id"
 
   create_table "notecards", :force => true do |t|
     t.text     "content"
@@ -21,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20111008013225) do
   end
 
   add_index "notecards", ["user_id"], :name => "index_notecards_on_user_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "tag_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["tag_name"], :name => "index_tags_on_tag_name"
 
   create_table "users", :force => true do |t|
     t.string   "email"

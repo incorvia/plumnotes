@@ -15,6 +15,7 @@ describe Notecard do
 
   	before(:each) do
   		@notecard = @user.notecards.create!(@attr)
+      @notecard.tags.create(:tag_name => "foobar")
   	end
 
   	it "should respond to a user attribute" do
@@ -25,6 +26,10 @@ describe Notecard do
   		@notecard.user_id.should == @user.id
   		@notecard.user.should == @user
   	end
+
+    it "should respond to tags" do
+      @notecard.should respond_to(:tags)
+    end
   end
 
   describe "notecard validations" do
