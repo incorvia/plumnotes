@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @user.notecards.order('notecards.created_at DESC').page params[:page]
+    @user.notecards.sortdesc.page params[:page]
   end
 
 private
