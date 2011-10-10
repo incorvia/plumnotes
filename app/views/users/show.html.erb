@@ -1,16 +1,6 @@
 <div id="user_show" class="container">
   <div class="content">
-    <%= render 'input_panel' %>
-    <div class="row"> 
-      <div class="span4">
-        <h3>Tags</h3>
-        <%= render @tags %>
-      </div>
-      <div class="span10">
-        <h3>Notes</h3>
-        <%= render @notecards %>
-        <%= paginate @notecards %>
-      </div>
-    </div>
+    <%= render 'input_panel' %> 
+    <%= render 'shared/main' %>
   </div>
 </div>

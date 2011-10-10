@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     @title = "My Notes"
 
     if @user == @current_user
-      @note = Notecard.new if signed_in?
-      @notecards = @user.notecards.order('notecards.created_at DESC').page params[:page]
-      @tags = current_user.tags.group("tag_name").order('tags.tag_name ASC')
+      @note = Notecard.new
+      @notecards = feed
+      @tags = current_user.tags.group("tag_name")
     else
       redirect_to user_path(@current_user)
     end
@@ -31,10 +31,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def feed
+    @user.notecards.order('notecards.created_at DESC').page params[:page]
+  end
+
 private
 
   def authenticate
     deny_access unless signed_in?
   end 
+
+
 
 end

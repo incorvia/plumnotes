@@ -1,6 +1,9 @@
 Notes::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :tags
+  end
+  
   resources :sessions, :only => [:new, :create, :destroy]
   resources :notecards, :only => [:create, :destroy]
 

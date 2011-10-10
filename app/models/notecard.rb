@@ -10,5 +10,12 @@ class Notecard < ActiveRecord::Base
 	validates  :content,	:length => { :maximum => 1000 }
 	validates	 :user_id,	:presence => true 
 
+	scope 	:notes_with_tag, lambda { |tag| return_notes_with_tag(tag) }
+
+private
+
+	def self.return_notes_with_tag(tag)
+		 joins(:tags).where(:tags => {:tag_name => "#{tag}"})
+	end
 
 end
