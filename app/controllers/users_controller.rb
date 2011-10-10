@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
     if @user == @current_user
       @note = Notecard.new if signed_in?
-      @notecards = @user.notecards.page params[:page]
+      @notecards = @user.notecards.order('notecards.created_at DESC').page params[:page]
+      @tags = current_user.tags.group("tag_name").order('tags.tag_name ASC')
     else
       redirect_to user_path(@current_user)
     end

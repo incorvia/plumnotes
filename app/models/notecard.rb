@@ -7,8 +7,6 @@ class Notecard < ActiveRecord::Base
 	has_many :associations
 	has_many :tags, 	:through => :associations
 
-	default_scope   :order => 'notecards.created_at DESC'
-
 	validates  :content,	:length => { :maximum => 1000 }
 	validates	 :user_id,	:presence => true 
 

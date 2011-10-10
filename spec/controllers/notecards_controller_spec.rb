@@ -31,15 +31,23 @@ describe NotecardsController do
 
     before(:each) do
       @attr = { :content => "@tag1 Hello World! test@example. @tag2" }
-      test_sign_in(Factory(:user))
+      @user = test_sign_in(Factory(:user))
     end
 
 
     it "should return an array of tags of from note text" do
       post :create, :notecard => @attr
-      assigns(:tags).should == ["@tag1", "@tag2"]
+      assigns(:tag_array).should == ["@tag1", "@tag2"]
+    end
+
+    it "should assign the correct tags" do
+      post :create, :notecard => @attr
+      @user_tags = []
+        @user.tags.each do |tag|
+          @user_tags << tag.tag_name
+        end
+      @user_tags.should == ["@tag1", "@tag2"]
     end
 
   end
-
 end
