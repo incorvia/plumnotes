@@ -45,7 +45,8 @@ private
       entered by preceding a word with a \"@\" symbol like: @welcome.  
       \n \n
       Enjoy your new found productivity!" )
-      @note.tags.create(:tag_name => "@welcome")
+    @note.tags.create(:tag_name => "@welcome")
+    @note.save
   end
 
 end
