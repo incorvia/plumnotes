@@ -1,10 +1,12 @@
 class NotecardsController < ApplicationController
 
+  before_filter :authenticate, :only => [:update]
+
   def create
   	@note =  current_user.notecards.build(params[:notecard])
   	if @note.save
       @tag_array = tagify(@note.content)
-      update_note_tags(@tag_array, @note)
+      add_note_tags(@tag_array, @note)
   		redirect_to user_path(@current_user)
   	end
   end
@@ -12,9 +14,29 @@ class NotecardsController < ApplicationController
   def destroy
   end
 
+  def update
+    @note =  Notecard.find(params[:id])
+    if @note.update_attributes(params[:notecard])
+      @tag_array = tagify(@note.content)
+      update_note_tags(@tag_array, @note)
+      redirect_to user_path(@current_user)
+    else
+      redirect_to edit_notecard_path(@note)
+    end
+  end
+
+  def edit
+    @note = Notecard.find_by_id(params[:id])
+  end
+
   def tagify(note)
 		array = note.split
 		processed = array.find_all{|item| item =~ /^@\w+/}
+  end
+
+  def add_note_tags(tag_list, note)
+    delete_tags(note) unless note.tags.empty?
+    assign_tags(tag_list, note)
   end
 
   def update_note_tags(tag_list, note)

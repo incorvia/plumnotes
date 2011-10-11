@@ -1,8 +1,7 @@
-<table id="notecard">
-  <tr>
-    <td id="note_container">
-    	<%= simple_format(notecard.content) %>
+<div class="notecard block-message">
+<%= link_to '&#9999;'.html_safe, edit_notecard_path(notecard), :class => "close" %>
+    	<%= simple_format(notecard.content) %><br>
 			<i><%= time_ago_in_words(notecard.created_at) %> ago</i>
 		</td>
 	</tr>
-</table>
+</div>

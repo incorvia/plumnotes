@@ -1,0 +1,17 @@
+<%= javascript_tag do %>
+
+$(document).ready(function() {
+    $('textarea').shiftenter();
+    $('textarea').autoResize();
+});
+
+<% end %>
+
+<div id="user_show" class="container">
+  <div class="content">
+    <%= render 'edit_panel' %> 
+  </div>
+</div>
+
+
+
