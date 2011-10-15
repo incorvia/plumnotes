@@ -1,4 +1,5 @@
 <div class="notecard block-message">
+<%= link_to 'x'.html_safe, notecard_path(notecard), :class => "close delete", :method => 'delete' %>
 <%= link_to '&#9999;'.html_safe, edit_notecard_path(notecard), :class => "close" %>
     	<%= simple_format(notecard.content) %><br>
 			<i><%= time_ago_in_words(notecard.created_at) %> ago</i>

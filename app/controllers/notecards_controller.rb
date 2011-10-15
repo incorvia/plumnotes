@@ -12,6 +12,9 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
+    @note = current_user.notecards.find_by_id(params[:id])
+    delete_note(@note)
+    redirect_to user_path(@current_user)
   end
 
   def update
@@ -57,5 +60,9 @@ class NotecardsController < ApplicationController
         note.associations.create(:tag_id => tag_id)
       end
     end
+  end
+
+  def delete_note(note)
+    Notecard.delete(note)
   end
 end
