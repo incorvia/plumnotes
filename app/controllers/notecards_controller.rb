@@ -1,6 +1,7 @@
 class NotecardsController < ApplicationController
 
   before_filter :authenticate, :only => [:update]
+  before_filter :authorized_user, :only => [:destroy, :update]
 
   def create
   	@note =  current_user.notecards.build(params[:notecard])
@@ -12,13 +13,13 @@ class NotecardsController < ApplicationController
   end
 
   def destroy
-    @note = current_user.notecards.find_by_id(params[:id])
-    delete_note(@note)
-    redirect_to user_path(@current_user)
+    if signed_in?
+      @note.destroy
+      redirect_to user_path(@current_user)
+    end
   end
 
   def update
-    @note =  Notecard.find(params[:id])
     if @note.update_attributes(params[:notecard])
       @tag_array = tagify(@note.content)
       update_note_tags(@tag_array, @note)
@@ -62,7 +63,11 @@ class NotecardsController < ApplicationController
     end
   end
 
-  def delete_note(note)
-    Notecard.delete(note)
+private
+
+  def authorized_user
+    @note = Notecard.find(params[:id])
+    redirect_to root_path unless current_user?(@note.user)
   end
+
 end

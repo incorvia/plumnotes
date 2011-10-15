@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate, :only => [:show]
+  before_filter :authenticate
 
   def new
     @title = 'Sign Up'
