@@ -22,7 +22,7 @@ set :use_sudo, false
 # Git
 
 set :scm, :git
-set :repository,  "git@github.com:/incorvia/notes.git"
+set :repository,  "git@github.com:incorvia/plumnotes.git"
 set :branch, "master"
 
 # VPS
